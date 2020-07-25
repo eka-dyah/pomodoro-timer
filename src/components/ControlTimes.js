@@ -13,7 +13,7 @@ import {
 class ControlTimes extends Component {
     render() {
         return (
-            <div className="col-12 mt-md-3">
+            <div className="col-12 mb-4 mt-md-3">
                 <div className="row d-flex justify-content-center">
                     <ControlTime
                         nameOfControl="Session (mins)"

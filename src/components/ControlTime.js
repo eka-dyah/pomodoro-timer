@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ControlTime = ({ nameOfControl, value, upHandler, downHandler }) => (
-    <div className="col-12 col-md-4 col-lg-3 text-center mt-4">
+    <div className="col-12 col-md-4 col-lg-3 text-center my-4">
         <p>{nameOfControl}</p>
         <div className="row d-flex align-items-center justify-content-center">
                 <button className="col-auto btn btn-warning" onClick={upHandler}>

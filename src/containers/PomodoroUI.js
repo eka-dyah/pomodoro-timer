@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { play, next } from "../redux/ActionCreators";
 import ModalNotif from "../components/ModalNotif";
 import Ring from "../components/Ring";
+import FooterArea from "../components/FooterArea";
 
 class PomodoroUI extends Component {
     state = {
@@ -63,25 +64,28 @@ class PomodoroUI extends Component {
     render() {
         return (
             (
-                <div className="container">
-                    <ModalNotif
-                        isOpen={this.state.isOpenModal}
-                        next={this.next}
-                        toggle={this.modalDismiss}
-                    />
-                    <Ring ref={this.ref} />
-                    <h1 className="my-5 text-center">POMODORO TIMER</h1>
-                    <div className="row">
-                        <SessionIndicator />
-                        <TimePlace
-                            play={this.state.play}
-                            playHandler={this.playHandler}
-                            pauseHandler={this.pauseHandler}
-                            timeSeconds={this.props.timeSeconds}
+                <React.Fragment>
+                    <div className="container">
+                        <ModalNotif
+                            isOpen={this.state.isOpenModal}
+                            next={this.next}
+                            toggle={this.modalDismiss}
                         />
-                        <ControlTimes />
+                        <Ring ref={this.ref} />
+                        <h1 className="my-5 text-center">POMODORO TIMER</h1>
+                        <div className="row">
+                            <SessionIndicator />
+                            <TimePlace
+                                play={this.state.play}
+                                playHandler={this.playHandler}
+                                pauseHandler={this.pauseHandler}
+                                timeSeconds={this.props.timeSeconds}
+                            />
+                            <ControlTimes />
+                        </div>
                     </div>
-                </div>
+                    <FooterArea />
+                </React.Fragment>
             )
         )
     }
