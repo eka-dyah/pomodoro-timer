@@ -4,7 +4,7 @@ const Ring = forwardRef((props, ref) => {
     
     return (
         <audio
-            src="https://bruitages.free.fr/horloges/sonnette_reveil.wav"
+            src="https://sfxcontent.s3.amazonaws.com/soundfx/CooCooClock.mp3"
             ref={ref}
         ></audio>
     );
