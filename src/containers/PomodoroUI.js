@@ -20,6 +20,11 @@ class PomodoroUI extends Component {
         this.ref.current.play();
     }
 
+    stopAudio = () => {
+        this.ref.current.pause();
+        this.ref.current.currentTime = 0;
+    }
+
     playHandler = () => {
         this.interval = setInterval(() => {
             if (this.props.timeSeconds === 1) {
@@ -42,7 +47,8 @@ class PomodoroUI extends Component {
     }
 
     pauseHandler = () => {
-        clearInterval(this.interval)
+        clearInterval(this.interval);
+        this.stopAudio();
 
         this.setState(state => ({
             play: !state.play
@@ -53,15 +59,23 @@ class PomodoroUI extends Component {
         this.setState(state => ({
             isOpenModal: !state.isOpenModal
         }))
+        this.stopAudio();
     }
 
     next = () => {
         this.props.next();
         this.modalDismiss();
         this.playHandler();
+        this.stopAudio();
     }
 
     render() {
+        const timerSeconds = this.props.timeSeconds;
+        const timerMinute = Math.floor(timerSeconds/60) >= 10 ? Math.floor(timerSeconds/60) : `0${Math.floor(timerSeconds/60)}`;
+        const timerSecond = timerSeconds%60 >= 10 ? timerSeconds%60 : `0${timerSeconds%60}`;
+        if (this.state.play) {
+            document.title = `(${timerMinute}:${timerSecond}) Pomodoro Timer`
+        }
         return (
             (
                 <React.Fragment>
