@@ -92,9 +92,9 @@ export const Reducer = (state = initialState, action) => {
 						: state.shortBreakTime - 1,
 				timeSeconds:
 					state.session !== 7 && state.session % 2 !== 0
-						? state.shortBreakTime + 1 <= 1
+						? state.shortBreakTime - 1 <= 1
 							? 1 * 60
-							: (state.shortBreakTime + 1) * 60
+							: (state.shortBreakTime - 1) * 60
 						: state.timeSeconds,
 			};
 		case ActionTypes.UP_LONG_BREAK:
@@ -115,10 +115,10 @@ export const Reducer = (state = initialState, action) => {
 			return {
 				...state,
 				longBreakTime:
-					state.longBreakTime - 1 <= 0 ? 1 : state.longBreakTime - 1,
+					state.longBreakTime - 1 <= 1 ? 1 : state.longBreakTime - 1,
 				timeSeconds:
 					state.session === 7
-						? state.longBreakTime - 1 <= 0
+						? state.longBreakTime - 1 <= 1
 							? 1 * 60
 							: (state.longBreakTime - 1) * 60
 						: state.timeSeconds,
