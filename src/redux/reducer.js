@@ -16,8 +16,6 @@ export const Reducer = (state = initialState, action) => {
 			return {
 				...state,
 				timeSeconds: state.timeSeconds - 1,
-				session:
-					state.session === 0 ? state.session + 1 : state.session,
 			};
 		case ActionTypes.RESET:
 			return {
@@ -32,26 +30,20 @@ export const Reducer = (state = initialState, action) => {
 				...state,
 				session: state.session - 1 <= 0 ? 0 : state.session - 1,
 				timeSeconds:
-					state.session - 1 >= 0
-						? state.session - 1 === 0
-							? state.sessionTime * 60
-							: (state.session - 1) % 2 === 1
-							? state.sessionTime * 60
-							: state.shortBreakTime * 60
-						: state.sessionTime * 60,
+					(state.session - 1) % 2 === 0
+						? state.sessionTime * 60
+						: state.shortBreakTime * 60,
 			};
 		case ActionTypes.NEXT:
 			return {
 				...state,
-				session: state.session + 1 > 8 ? 0 : state.session + 1,
+				session: state.session + 1 > 7 ? 0 : state.session + 1,
 				timeSeconds:
-					state.session + 1 <= 8
-						? state.session + 1 === 8
-							? state.longBreakTime * 60
-							: (state.session + 1) % 2 === 1
-							? state.sessionTime * 60
-							: state.shortBreakTime * 60
-						: state.sessionTime * 60,
+					(state.session + 1) % 2 === 0
+						? state.sessionTime * 60
+						: state.session + 1 === 7
+						? state.longBreakTime * 60
+						: state.shortBreakTime * 60,
 			};
 		case ActionTypes.UP_SESSION:
 			return {
@@ -59,8 +51,8 @@ export const Reducer = (state = initialState, action) => {
 				sessionTime:
 					state.sessionTime + 1 > 120 ? 120 : state.sessionTime + 1,
 				timeSeconds:
-					state.session === 0 || state.session % 2 === 1
-						? state.sessionTime + 1 > 120
+					state.session % 2 === 0
+						? state.sessionTime + 1 >= 120
 							? 120 * 60
 							: (state.sessionTime + 1) * 60
 						: state.timeSeconds,
@@ -69,10 +61,10 @@ export const Reducer = (state = initialState, action) => {
 			return {
 				...state,
 				sessionTime:
-					state.sessionTime - 1 <= 0 ? 1 : state.sessionTime - 1,
+					state.sessionTime - 1 <= 1 ? 1 : state.sessionTime - 1,
 				timeSeconds:
-					state.session === 0 || state.session % 2 === 1
-						? state.sessionTime - 1 <= 0
+					state.session % 2 === 0
+						? state.sessionTime - 1 <= 1
 							? 1 * 60
 							: (state.sessionTime - 1) * 60
 						: state.timeSeconds,
@@ -81,14 +73,12 @@ export const Reducer = (state = initialState, action) => {
 			return {
 				...state,
 				shortBreakTime:
-					state.shortBreakTime + 1 > 120
+					state.shortBreakTime + 1 >= 120
 						? 120
 						: state.shortBreakTime + 1,
 				timeSeconds:
-					state.session !== 7 &&
-					state.session % 2 === 0 &&
-					state.session !== 0
-						? state.shortBreakTime + 1 > 120
+					state.session !== 7 && state.session % 2 !== 0
+						? state.shortBreakTime + 1 >= 120
 							? 120 * 60
 							: (state.shortBreakTime + 1) * 60
 						: state.timeSeconds,
@@ -97,16 +87,14 @@ export const Reducer = (state = initialState, action) => {
 			return {
 				...state,
 				shortBreakTime:
-					state.shortBreakTime - 1 <= 0
+					state.shortBreakTime - 1 <= 1
 						? 1
 						: state.shortBreakTime - 1,
 				timeSeconds:
-					state.session !== 7 &&
-					state.session % 2 === 0 &&
-					state.session !== 0
-						? state.shortBreakTime - 1 <= 0
+					state.session !== 7 && state.session % 2 !== 0
+						? state.shortBreakTime + 1 <= 1
 							? 1 * 60
-							: (state.shortBreakTime - 1) * 60
+							: (state.shortBreakTime + 1) * 60
 						: state.timeSeconds,
 			};
 		case ActionTypes.UP_LONG_BREAK:
@@ -117,7 +105,7 @@ export const Reducer = (state = initialState, action) => {
 						? 120
 						: state.longBreakTime + 1,
 				timeSeconds:
-					state.session === 8
+					state.session === 7
 						? state.longBreakTime + 1 > 120
 							? 120 * 60
 							: (state.longBreakTime + 1) * 60
@@ -129,7 +117,7 @@ export const Reducer = (state = initialState, action) => {
 				longBreakTime:
 					state.longBreakTime - 1 <= 0 ? 1 : state.longBreakTime - 1,
 				timeSeconds:
-					state.session === 8
+					state.session === 7
 						? state.longBreakTime - 1 <= 0
 							? 1 * 60
 							: (state.longBreakTime - 1) * 60
