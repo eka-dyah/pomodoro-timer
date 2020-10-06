@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ControlTime from "./ControlTime";
+import ControlTime from "../components/ControlTime";
 import { connect } from "react-redux";
 import {
     upHandlerSession,

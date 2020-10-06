@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import RectForSession from "./Additional/RectForSession";
+import RectForSession from "../components/Additional/RectForSession";
 
 class SessionIndicator extends Component {
 	render() {

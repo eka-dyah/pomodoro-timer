@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
-import SessionIndicator from "../components/SessionIndicator";
+import SessionIndicator from "./SessionIndicator";
 import TimePlace from "../components/TimePlace";
-import ControlTimes from "../components/ControlTimes";
+import ControlTimes from "./ControlTimes";
 import { connect } from "react-redux";
 import { play, next } from "../redux/ActionCreators";
 import ModalNotif from "../components/ModalNotif";
