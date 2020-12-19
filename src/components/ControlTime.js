@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ControlTime = ({ nameOfControl, value, upHandler, downHandler }) => (
     <div className="col-12 col-md-4 col-lg-3 text-center my-4">
         <p>{nameOfControl}</p>

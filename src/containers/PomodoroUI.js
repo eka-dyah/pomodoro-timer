@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import { Component, createRef } from "react";
 import SessionIndicator from "./SessionIndicator";
 import TimePlace from "../components/TimePlace";
 import ControlTimes from "./ControlTimes";
@@ -85,7 +85,7 @@ class PomodoroUI extends Component {
 			document.title = "Pomodoro Timer";
 		}
 		return (
-			<React.Fragment>
+			<>
 				<div className="container">
 					<ModalNotif
 						isOpen={this.state.isOpenModal}
@@ -106,7 +106,7 @@ class PomodoroUI extends Component {
 					</div>
 				</div>
 				<FooterArea />
-			</React.Fragment>
+			</>
 		);
 	}
 }

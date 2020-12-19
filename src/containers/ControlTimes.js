@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import ControlTime from "../components/ControlTime";
 import { connect } from "react-redux";
 import {
