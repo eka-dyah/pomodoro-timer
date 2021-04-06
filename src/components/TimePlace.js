@@ -25,11 +25,11 @@ class TimePlace extends Component {
                             <div className="col-auto">
                             
                                 {!this.props.play ? (
-                                    <button className="btn" onClick={this.props.playHandler}>
+                                    <button className="btn control" onClick={this.props.playHandler}>
                                         <i className="fa fa-play" aria-hidden="true"></i>
                                     </button>
                                 ) : (
-                                    <button className="btn" onClick={this.props.pauseHandler}>
+                                    <button className="btn control" onClick={this.props.pauseHandler}>
                                         <i className="fa fa-pause" aria-hidden="true"></i>
                                     </button>
                                 )}
@@ -37,7 +37,7 @@ class TimePlace extends Component {
 
                             </div>
                             <div className="col-auto" onClick={this.props.resetHandler}>
-                                <button className="btn">
+                                <button className="btn control">
                                     <i className="fa fa-repeat" aria-hidden="true"></i>
                                 </button>
                             </div>
