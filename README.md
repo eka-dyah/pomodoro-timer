@@ -1,5 +1,5 @@
 This project was created using React Js.
-[https://simple-pomodorotimer.web.app](Pomodoro Timer)
+[Pomodoro Timer](https://simple-pomodorotimer.web.app)
 
 In the project directory, you can run:
 
