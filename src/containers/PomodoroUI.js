@@ -7,14 +7,23 @@ import { play, next } from "../redux/ActionCreators";
 import ModalNotif from "../components/ModalNotif";
 import Ring from "../components/Ring";
 import FooterArea from "../components/FooterArea";
+import LayoutUI from "../components/LayoutUI";
 
 class PomodoroUI extends Component {
 	state = {
 		play: false,
 		isOpenModal: false,
+		checkedTheme: false,
 	};
 
 	ref = createRef();
+	refToggle = createRef();
+
+	onClickTheme = () => {
+		this.setState({
+			checkedTheme: this.refToggle.current.checked
+		})
+	}
 
 	playAudio = () => {
 		this.ref.current.play();
@@ -33,11 +42,11 @@ class PomodoroUI extends Component {
 				this.setState((state) => ({
 					isOpenModal: !state.isOpenModal,
 					play: !state.play,
-                }));
-            }
-            if (this.props.timeSeconds === 0) {
-                this.props.next();
-            }
+				}));
+			}
+			if (this.props.timeSeconds === 0) {
+				this.props.next();
+			}
 			this.props.play();
 		}, 1000);
 
@@ -86,25 +95,27 @@ class PomodoroUI extends Component {
 		}
 		return (
 			<>
-				<div className="container">
-					<ModalNotif
-						isOpen={this.state.isOpenModal}
-						next={this.next}
-						toggle={this.modalDismiss}
+				<ModalNotif
+					isOpen={this.state.isOpenModal}
+					next={this.next}
+					toggle={this.modalDismiss}
+				/>
+				<Ring ref={this.ref} />
+				<LayoutUI
+					title="POMODORO TIMER"
+					checked={this.state.checkedTheme}
+					innerRef={this.refToggle}
+					onClickTheme={this.onClickTheme}
+				>
+					<SessionIndicator />
+					<TimePlace
+						play={this.state.play}
+						playHandler={this.playHandler}
+						pauseHandler={this.pauseHandler}
+						timeSeconds={this.props.timeSeconds}
 					/>
-					<Ring ref={this.ref} />
-					<h1 className="my-5 text-center">POMODORO TIMER</h1>
-					<div className="row">
-						<SessionIndicator />
-						<TimePlace
-							play={this.state.play}
-							playHandler={this.playHandler}
-							pauseHandler={this.pauseHandler}
-							timeSeconds={this.props.timeSeconds}
-						/>
-						<ControlTimes />
-					</div>
-				</div>
+					<ControlTimes />
+				</LayoutUI>
 				<FooterArea />
 			</>
 		);
