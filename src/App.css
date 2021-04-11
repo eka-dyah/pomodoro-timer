@@ -18,6 +18,11 @@
   color: white;
 }
 
+.modal-notif.Night  {
+  background-color: #636363;
+  color: white;
+}
+
 @media (min-width: 576px) {
   .time-indicator {
     font-size: 5rem;
