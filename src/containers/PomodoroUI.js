@@ -21,9 +21,9 @@ class PomodoroUI extends Component {
 
 	onClickTheme = () => {
 		this.setState({
-			checkedTheme: this.refToggle.current.checked
-		})
-	}
+			checkedTheme: this.refToggle.current.checked,
+		});
+	};
 
 	playAudio = () => {
 		this.ref.current.play();
@@ -95,18 +95,19 @@ class PomodoroUI extends Component {
 		}
 		return (
 			<>
-				<ModalNotif
-					isOpen={this.state.isOpenModal}
-					next={this.next}
-					toggle={this.modalDismiss}
-				/>
-				<Ring ref={this.ref} />
 				<LayoutUI
 					title="POMODORO TIMER"
 					checked={this.state.checkedTheme}
 					innerRef={this.refToggle}
 					onClickTheme={this.onClickTheme}
 				>
+					<ModalNotif
+						isOpen={this.state.isOpenModal}
+						next={this.next}
+						toggle={this.modalDismiss}
+						checkedTheme={this.state.checkedTheme}
+					/>
+					<Ring ref={this.ref} />
 					<SessionIndicator />
 					<TimePlace
 						play={this.state.play}

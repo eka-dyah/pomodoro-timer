@@ -1,6 +1,9 @@
+label, input[type="checbox"] {
+    width: 50px;
+}
+
 label {
     position: relative;
-    width: 50px;
     background-color: #6798ff;
     border-radius: 30px;
     float: right;
@@ -20,7 +23,6 @@ label {
 
 input[type="checkbox"] {
     opacity: 0;
-    width: 100px;
 }
 
 input:checked + .slider-toggle {
