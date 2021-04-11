@@ -14,7 +14,6 @@ const RectForSession = ({
 			indicatorToFull = `${
 				timeSeconds * 100 / (sessionTime * 60)
 			}%`;
-			console.log(sessionTime*60, timeSeconds, indicatorToFull);
 		} else if (session % 2 !== 0 && session !== 7) {
 			indicatorToFull = `${
 				timeSeconds * 100 / (shortTime * 60)
