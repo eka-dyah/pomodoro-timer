@@ -1,9 +1,9 @@
 import './Switch.css';
 
-const Switch = ({ innerRef, onClick }) => (
+const Switch = ({ innerRef, onChange, checked = false }) => (
     <>
-        <label onClick={onClick}>
-            <input ref={innerRef} type="checkbox" />
+        <label>
+            <input ref={innerRef} type="checkbox" checked={checked} onChange={onChange} />
             <span className="slider-toggle" />
         </label>
     </>
