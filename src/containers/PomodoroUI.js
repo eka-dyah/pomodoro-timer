@@ -19,6 +19,20 @@ class PomodoroUI extends Component {
 	ref = createRef();
 	refToggle = createRef();
 
+
+	componentDidMount() {
+		const checkedTheme = localStorage.getItem("checkedTheme") === "true";
+		if (checkedTheme !== null || checkedTheme !== undefined) {
+			this.setState({ checkedTheme });
+		}
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.checkedTheme !== this.state.checkedTheme) {
+			localStorage.setItem("checkedTheme", this.state.checkedTheme);
+		}	
+	}
+
 	onClickTheme = () => {
 		this.setState({
 			checkedTheme: this.refToggle.current.checked,
